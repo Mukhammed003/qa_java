@@ -1,33 +1,56 @@
+
 import com.example.Feline;
 import com.example.Lion;
+import com.example.Predator;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
-import org.mockito.Mockito;
+
 import org.mockito.junit.MockitoJUnitRunner;
+
+import java.util.Arrays;
+import java.util.List;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThrows;
 
 @RunWith(MockitoJUnitRunner.class)
 public class LionTest {
     @Mock
-    Lion lion;
+    Predator mockPredator;
+
+    Feline feline = new Feline();
 
     @Test
-    public void getKittensTest() {
-        Feline feline = new Feline();
-        lion.getKittens(feline);
-        Mockito.verify(lion, Mockito.times(1)).getKittens(feline);
+    public void doesHaveManeMaleTest() throws Exception {
+        Lion lion = new Lion("Самец");
+        assertEquals(true, lion.doesHaveMane());
     }
 
     @Test
-    public void doesHaveManeTest() {
-        lion.doesHaveMane();
-        Mockito.verify(lion, Mockito.times(1)).doesHaveMane();
+    public void doesHaveManeFemaleTest() throws Exception {
+        Lion lion = new Lion("Самка");
+        assertEquals(false, lion.doesHaveMane());
+    }
+
+    @Test
+    public void doesHaveManeUnknownTest() {
+        Exception exception = assertThrows(Exception.class, () -> {
+            new Lion("Неизвестный");
+        });
+        assertEquals("Используйте допустимые значения пола животного - самей или самка", exception.getMessage());
+    }
+
+    @Test
+    public void getKittensTest() throws Exception {
+        Lion lion = new Lion("Самец");
+        assertEquals(1, lion.getKittens(feline));
     }
 
     @Test
     public void getFoodTest() throws Exception {
-        Feline feline = new Feline();
-        lion.getFood(feline);
-        Mockito.verify(lion, Mockito.times(1)).getFood(feline);
+        List<String> expectedFood = Arrays.asList("Животные", "Птицы", "Рыба");
+        Lion lion = new Lion("Самец");
+        assertEquals(expectedFood, lion.getFood(feline));
     }
 }
