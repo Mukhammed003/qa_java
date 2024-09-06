@@ -1,36 +1,28 @@
+import com.example.Cat;
 import com.example.Feline;
+import com.example.Predator;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
 
+import static org.junit.Assert.assertEquals;
+
 @RunWith(MockitoJUnitRunner.class)
 public class FelineTest {
     @Mock
-    Feline feline;
+    Predator mockPredator;
 
-    @Test
-    public void eatMeatTest() throws Exception {
-        feline.eatMeat();
-        Mockito.verify(feline, Mockito.times(1)).eatMeat();
-    }
-
-    @Test
-    public void getKittensTest()  {
-        feline.getKittens();
-        Mockito.verify(feline, Mockito.times(1)).getKittens();
-    }
+    Feline feline = new Feline();
 
     @Test
     public void getFamilyTest()  {
-        feline.getFamily();
-        Mockito.verify(feline, Mockito.times(1)).getFamily();
+        assertEquals("Кошачьи", feline.getFamily());
     }
 
     @Test
-    public void getKittensWithIntegerTest()  {
-        feline.getKittens(5);
-        Mockito.verify(feline, Mockito.times(1)).getKittens(5);
+    public void getKittensTest() {
+        assertEquals(1, feline.getKittens());
     }
 }
