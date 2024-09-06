@@ -6,6 +6,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.mockito.Spy;
 import org.mockito.junit.MockitoJUnitRunner;
 
 import java.util.Arrays;
@@ -16,11 +17,14 @@ import static org.mockito.Mockito.times;
 
 @RunWith(MockitoJUnitRunner.class)
 public class CatTest {
-    @Mock
-    Predator mockPredator;
+    @Spy
+    Cat cat;
 
     Feline feline = new Feline();
-    Cat cat = new Cat(feline);
+
+    public CatTest() {
+        cat = new Cat(feline);
+    }
 
     @Test
     public void getSoundTest() {
