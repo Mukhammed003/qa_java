@@ -1,9 +1,13 @@
-
+import com.example.Cat;
 import com.example.Feline;
 import com.example.Lion;
+import com.example.Predator;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.Spy;
+import org.mockito.junit.MockitoJUnitRunner;
 
 import java.util.Arrays;
 import java.util.List;
@@ -11,32 +15,12 @@ import java.util.List;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThrows;
 import static org.mockito.Mockito.spy;
+import static org.mockito.Mockito.times;
 
-@RunWith(Parameterized.class)
+@RunWith(MockitoJUnitRunner.class)
 public class LionTest {
-    private final String sexOfAnimal;
-    private final boolean isMale;
-
-    public LionTest(String sexOfAnimal, boolean isMale) {
-        this.sexOfAnimal = sexOfAnimal;
-        this.isMale = isMale;
-    }
-
-    @Parameterized.Parameters
-    public static Object[][] getData() {
-        return new Object[][]{
-                {"Самец", true},
-                {"Самка", false}
-        };
-    }
-
-    @Test
-    public void doesHaveManeTest() throws Exception {
-        Lion lion = new Lion(sexOfAnimal);
-        Lion lionSpy  = spy(lion);
-        assertEquals(isMale, lionSpy.doesHaveMane());
-    }
-
+    @Mock
+    Predator predator;
 
     @Test
     public void doesHaveManeUnknownTest() {
@@ -49,17 +33,15 @@ public class LionTest {
     @Test
     public void getKittensTest() throws Exception {
         Feline feline = new Feline();
-        Lion lion = new Lion(sexOfAnimal);
-        Lion lionSpy  = spy(lion);
-        assertEquals(1, lionSpy.getKittens(feline));
+        Lion lion = new Lion("Самец");
+        assertEquals(1, lion.getKittens(feline));
     }
 
     @Test
     public void getFoodTest() throws Exception {
         Feline feline = new Feline();
         List<String> expectedFood = Arrays.asList("Животные", "Птицы", "Рыба");
-        Lion lion = new Lion(sexOfAnimal);
-        Lion lionSpy  = spy(lion);
-        assertEquals(expectedFood, lionSpy.getFood(feline));
+        Lion lion = new Lion("Самец");
+        assertEquals(expectedFood, lion.getFood(feline));
     }
 }

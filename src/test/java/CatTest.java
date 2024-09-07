@@ -29,11 +29,13 @@ public class CatTest {
     @Test
     public void getSoundTest() {
         assertEquals("Мяу", cat.getSound());
+        Mockito.verify(cat, times(1)).getSound();
     }
 
     @Test
     public void getFoodTest() throws Exception {
         List<String> expectedFood = Arrays.asList("Животные", "Птицы", "Рыба");
         assertEquals(expectedFood, cat.getFood());
+        Mockito.verify(cat, times(1)).getFood();
     }
 }
