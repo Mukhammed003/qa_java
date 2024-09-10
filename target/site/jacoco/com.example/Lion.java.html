@@ -5,27 +5,29 @@ import java.util.List;
 public class Lion {
 
     boolean hasMane;
+    private Feline feline;
 
-<span class="fc" id="L9">    public Lion(String sex) throws Exception {</span>
-<span class="fc bfc" id="L10" title="All 2 branches covered.">        if (&quot;Самец&quot;.equals(sex)) {</span>
-<span class="fc" id="L11">            hasMane = true;</span>
-<span class="fc bfc" id="L12" title="All 2 branches covered.">        } else if (&quot;Самка&quot;.equals(sex)) {</span>
-<span class="fc" id="L13">            hasMane = false;</span>
+<span class="fc" id="L10">    public Lion(String sex, Feline feline) throws Exception {</span>
+<span class="fc" id="L11">        this.feline = feline;</span>
+<span class="fc bfc" id="L12" title="All 2 branches covered.">        if (&quot;Самец&quot;.equals(sex)) {</span>
+<span class="fc" id="L13">            hasMane = true;</span>
+<span class="fc bfc" id="L14" title="All 2 branches covered.">        } else if (&quot;Самка&quot;.equals(sex)) {</span>
+<span class="fc" id="L15">            hasMane = false;</span>
         } else {
-<span class="fc" id="L15">            throw new Exception(&quot;Используйте допустимые значения пола животного - самей или самка&quot;);</span>
+<span class="fc" id="L17">            throw new Exception(&quot;Используйте допустимые значения пола животного - самей или самка&quot;);</span>
         }
-<span class="fc" id="L17">    }</span>
+<span class="fc" id="L19">    }</span>
 
-    public int getKittens(Feline feline) {
-<span class="fc" id="L20">        return feline.getKittens();</span>
+    public int getKittens() {
+<span class="fc" id="L22">        return feline.getKittens();</span>
     }
 
     public boolean doesHaveMane() {
-<span class="fc" id="L24">        return hasMane;</span>
+<span class="fc" id="L26">        return hasMane;</span>
     }
 
-    public List&lt;String&gt; getFood(Feline feline) throws Exception {
-<span class="fc" id="L28">        return feline.getFood(&quot;Хищник&quot;);</span>
+    public List&lt;String&gt; getFood() throws Exception {
+<span class="fc" id="L30">        return feline.getFood(&quot;Хищник&quot;);</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

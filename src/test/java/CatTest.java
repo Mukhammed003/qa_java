@@ -1,11 +1,8 @@
 
 import com.example.Cat;
 import com.example.Feline;
-import com.example.Predator;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.Spy;
 import org.mockito.junit.MockitoJUnitRunner;
 
@@ -13,7 +10,6 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.Assert.*;
-import static org.mockito.Mockito.times;
 
 @RunWith(MockitoJUnitRunner.class)
 public class CatTest {
@@ -29,13 +25,11 @@ public class CatTest {
     @Test
     public void getSoundTest() {
         assertEquals("Мяу", cat.getSound());
-        Mockito.verify(cat, times(1)).getSound();
     }
 
     @Test
     public void getFoodTest() throws Exception {
         List<String> expectedFood = Arrays.asList("Животные", "Птицы", "Рыба");
         assertEquals(expectedFood, cat.getFood());
-        Mockito.verify(cat, times(1)).getFood();
     }
 }

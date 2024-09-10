@@ -1,39 +1,39 @@
 
+import com.example.Feline;
 import com.example.Lion;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
-import org.mockito.Mockito;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertThrows;
 import static org.mockito.Mockito.spy;
-import static org.mockito.Mockito.times;
+
 
 @RunWith(Parameterized.class)
 public class ParameterizedTest {
 
     private final String sexOfAnimal;
     private final boolean isMale;
+    private Feline feline;
 
-    public ParameterizedTest(String sexOfAnimal, boolean isMale) {
+    public ParameterizedTest(String sexOfAnimal, boolean isMale, Feline feline) {
         this.sexOfAnimal = sexOfAnimal;
         this.isMale = isMale;
+        this.feline = feline;
     }
 
     @Parameterized.Parameters
     public static Object[][] getData() {
         return new Object[][]{
-                {"Самец", true},
-                {"Самка", false}
+                {"Самец", true, null},
+                {"Самка", false, null}
         };
     }
 
     @Test
     public void doesHaveManeTest() throws Exception {
-        Lion lion = new Lion(sexOfAnimal);
+        Lion lion = new Lion(sexOfAnimal, feline);
         Lion lionSpy  = spy(lion);
         assertEquals(isMale, lionSpy.doesHaveMane());
-        Mockito.verify(lionSpy, times(1)).doesHaveMane();
     }
 }
